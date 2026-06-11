@@ -21,11 +21,11 @@ def home():
 def translate(req:TranslationRequest):
 
     text=f">>tel<< {req.text}"
-    inputs =tokenizer(text,return_tensor="pt",padding=True)
+    inputs =tokenizer(text,return_tensors="pt",padding=True)
 
-    translate=model.generate(**inputs)
+    translated=model.generate(**inputs)
 
-    output=tokenizer.decode(translate[0],skip_special_token=True)
+    output=tokenizer.decode(translated[0],skip_special_tokens=True)
 
     return{
         "English":req.text,
